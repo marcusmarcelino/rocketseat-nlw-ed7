@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import { AuthenticateUserController } from './Controllers/AuthenticateUserController';
+import { CreateMessageController } from './Controllers/CreateMessageController';
+import { ensureAuthenticated } from './middleware/ensureAuthenticated';
 
 const router = Router();
-//new AuthenticateUserController().handle
+
 router.post('/authenticate', new AuthenticateUserController().handle)
+
+router.post('/messages', ensureAuthenticated, new CreateMessageController().handle)
 
 export { router };
