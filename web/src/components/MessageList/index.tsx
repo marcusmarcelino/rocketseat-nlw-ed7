@@ -72,7 +72,7 @@ export function MessageList() {
         
 
         {messages.map(message => (
-          <S.Message key={message.id}>
+          <S.Message key={message.id || Math.random()}>
             <S.MessageContent>
               {message.text}
             </S.MessageContent>

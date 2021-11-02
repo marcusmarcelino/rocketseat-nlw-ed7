@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../services/api";
 
@@ -42,6 +43,7 @@ export function AuthProvider(props: AuthProviderProps) {
     });
 
     const { token, user } = response.data;
+    console.log(response.data);
     localStorage.setItem('@dowhile:token', token);
     api.defaults.headers.common.authorization = `Bearer ${token}`;
     setUser(user);
