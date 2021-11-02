@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import * as AuthSessions from 'expo-auth-session';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { api } from "../Services/api";
+import { api } from "../services/api";
 
 const CLIENT_ID = '0932e883b51eb22560f4';
 const SCOPE = 'read:user';
