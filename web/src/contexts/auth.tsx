@@ -34,19 +34,19 @@ type AuthResponse = {
 
 export function AuthProvider(props: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
-  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=60aa878ccb723395a1be` // &redirect_uri=http://localhost:3000
+  const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}` // &redirect_uri=http://localhost:3000
 
 
   async function signIn(githubCode: string) {
-    const response = await api.post<AuthResponse>('authenticate', {
-      code: githubCode
-    });
+    const dataOrigin = { code: githubCode, origin: 'WEB' };
+    const response = await api.post<AuthResponse>('authenticate', { data: dataOrigin });
 
-    const { token, user } = response.data;
-    console.log(response.data);
-    localStorage.setItem('@dowhile:token', token);
-    api.defaults.headers.common.authorization = `Bearer ${token}`;
-    setUser(user);
+    if (response.data && response.data.token !== undefined) {
+      const { token, user } = response.data;
+      localStorage.setItem('@dowhile:token', token);
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+      setUser(user);
+    }
   }
 
   function signOut() {
@@ -61,7 +61,7 @@ export function AuthProvider(props: AuthProviderProps) {
       api.get<User>('profile')
         .then(response => {
           setUser(response.data);
-        });      
+        });
     }
   }, [])
 
@@ -69,9 +69,9 @@ export function AuthProvider(props: AuthProviderProps) {
     const url = window.location.href;
     const hashGithubCode = url.includes('?code=');
 
-    if(hashGithubCode) {
+    if (hashGithubCode) {
       const [urlWithoutCode, githubCode] = url.split('?code=');
-      console.log({urlWithoutCode, githubCode});
+      // console.log({ urlWithoutCode, githubCode });
 
       window.history.pushState({}, '', urlWithoutCode); // limpo a url para que o usuário não veja
       signIn(githubCode);                               // o codigo que foi retornado pelo github

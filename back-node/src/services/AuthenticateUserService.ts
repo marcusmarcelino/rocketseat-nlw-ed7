@@ -23,14 +23,24 @@ interface IUserResponse {
   email: string
 }
 
+interface OriginRequest {
+  code: string;
+  origin: string;
+}
+
 class AuthenticateUserService {
-  async execute(code: string) {
+  async execute(data: OriginRequest) {
+    const params = {
+      client_id: data.origin === 'WEB' ? process.env.GITHUB_CLIENT_ID_WEB : process.env.GITHUB_CLIENT_ID_MOBILE,
+      client_secret: data.origin === 'WEB' ? process.env.GITHUB_CLIENT_SECRET_WEB : process.env.GITHUB_CLIENT_SECRET_MOBILE,
+    };
+
     const url = "https://github.com/login/oauth/access_token";
     const { data: accessTokenResponse } = await axios.post<IAccessTokenResponse>(url, null, {
       params: {
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
-        code,
+        client_id: params.client_id,
+        client_secret: params.client_secret,
+        code: data.code,
       },
       headers: {
         Accept: "application/json",

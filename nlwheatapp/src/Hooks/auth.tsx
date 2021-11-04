@@ -3,8 +3,9 @@ import * as AuthSessions from 'expo-auth-session';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { api } from "../services/api";
+import Environments from "../../environment";
 
-const CLIENT_ID = '0932e883b51eb22560f4';
+const CLIENT_ID = Environments.REACT_APP_GITHUB_CLIENT_ID;
 const SCOPE = 'read:user';
 const USER_STORAGE = '@nlwheat:user';
 const TOKEN_STORAGE = '@nlwheat:token';
@@ -43,7 +44,7 @@ type AuthorizationResponse = {
 export const AuthContext = createContext({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [isSigningIn, setIsSigningIn] = useState(true);
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   async function signIn() {
@@ -53,8 +54,9 @@ function AuthProvider({ children }: AuthProviderProps) {
       const authSessionResponse = await AuthSessions.startAsync({ authUrl }) as AuthorizationResponse;
 
       if (authSessionResponse.type === 'success' && authSessionResponse.params.error !== 'access_denied') {
-        const authResponse = await api.post('/authenticate', { code: authSessionResponse.params.code });
-        const { user, token } = authResponse.data as AuthResponse;
+        const dataOrigin = { code: authSessionResponse.params.code, origin: 'MOBILE' };
+        const authResponse = await api.post<AuthResponse>('/authenticate', { data: dataOrigin });
+        const { user, token } = authResponse.data;
 
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(user));
@@ -82,10 +84,6 @@ function AuthProvider({ children }: AuthProviderProps) {
       if (userStorage && tokenStorage) {
         api.defaults.headers.common['Authorization'] = `Bearer ${tokenStorage}`;
         setUser(JSON.parse(userStorage));
-      } else {
-        setUser(null);
-        await AsyncStorage.removeItem(USER_STORAGE);
-        await AsyncStorage.removeItem(TOKEN_STORAGE);
       }
 
       setIsSigningIn(false);

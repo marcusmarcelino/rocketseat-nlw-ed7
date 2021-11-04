@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
-import { api } from "../../Services/api";
+import { api } from "../../services/api";
 import { io } from "socket.io-client";
 
 import { MESSAGES_EXAMPLE } from '../../utils/messages';
