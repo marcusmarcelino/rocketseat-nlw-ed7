@@ -85,7 +85,7 @@ npm dev
 ```
 
 ##### Para Execução do ->  Frontend
-Para instalar e executar o **Frontend**, acesse a pasta frontend com o seu terminal e em seguida execute:
+Para instalar e executar o **Frontend**, acesse a pasta web com o seu terminal e em seguida execute:
 ```bash
 yarn install
 yarn start
@@ -98,7 +98,7 @@ npm dev
 Assim que o processo terminar, você pode acessar através do endereço `localhost:3000` em seu navegador. 
 
 ##### Para Execução do ->  Mobile
-Para executar a aplicação **Mobile**, primeiro configure o endereço do servidor no arquivo `src/services/api.js`, de acordo com o seus parâmetros de rede "seu `ip`", e a porta configurada no backend, para que a aplicação mobile consiga acessa a base de dados, em seguida abra o terminal dentro da pasta mobile e depois execute os comandos:
+Para executar a aplicação **Mobile**, acesse a pasta nlwheatapp e em seguida configure o endereço do servidor no arquivo `src/services/api.js`, de acordo com o seus parâmetros de rede "seu `ip`", e a porta configurada no backend, para que a aplicação mobile consiga acessa a base de dados, em seguida abra o terminal dentro da pasta mobile e depois execute os comandos:
 ```bash
 # Caso ja possua o Expo (CLI) instalado! não execute  aprimeira linha de código
 yarn global add install expo-cli
