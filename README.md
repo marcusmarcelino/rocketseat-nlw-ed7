@@ -19,7 +19,7 @@
   </a>
 
   <a aria-label="Versão do React Native" href="#">
-    <img src="https://img.shields.io/badge/react-native-0.64.2-informational?logo=react-native"></img>
+    <img src="https://img.shields.io/badge/react-native-informational?logo=react-native"></img>
   </a>
 
   <a aria-label="Versão do Expo" href="#">
