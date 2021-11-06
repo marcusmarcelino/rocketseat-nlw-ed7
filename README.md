@@ -1,7 +1,7 @@
 <h1 align="center"> <strong> Next Level Week 7ª Edição </strong> </h1>
 
 <div align="center">
-  <img  height="250" width="550" src="./project-screens/banner-nlw-impulse.png" align="center"></img>
+  <img  height="250" width="100%" src="./project-screens/banner-nlw-impulse.png" align="center"></img>
 </div>
 
 <br />
@@ -9,7 +9,7 @@
 <p align="center">Projeto <strong>IMPULSE</strong> - Rocketseat</p>
 
 <div align="center">
-  <img height="200" width="100%" src="./project-screens/logo-nlw-impulse.png" align="center"></img>
+  <img height="200" width="200" src="./project-screens/logo-nlw-impulse.png" align="center"></img>
 </div>
 
 <br />
@@ -115,12 +115,15 @@ Lembre-se: **Fique atento ao seu ip, sempre que executar a aplicação mobile, v
 ## 🔖 TelasApp
 Web -> resultado da aplicação em execução:
 
+<br />
+
+<div align="center">
+  <img src="./project-screens/capa-nlw.png" align="center"></img>
+</div>
+
+<br />
+
 <table>
-	<tr>
-    <td>
-      <img src="./project-screens/capa-nlw.png" align="center"></img>
-    </td>
-	</tr>
 	<tr>
 		<td>
 			<img src="./project-screens/tela-home-login.png" align="center"></img>
