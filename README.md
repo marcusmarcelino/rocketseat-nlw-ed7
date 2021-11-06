@@ -9,8 +9,10 @@
 <p align="center">Projeto <strong>IMPULSE</strong> - Rocketseat</p>
 
 <div align="center">
-  <img height="200" width="200" src="./project-screens/logo-nlw-impulse.png" align="center"></img>
+  <img height="200" width="100%" src="./project-screens/logo-nlw-impulse.png" align="center"></img>
 </div>
+
+<br />
 
 <p align="center">
 
